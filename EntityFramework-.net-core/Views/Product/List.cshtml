@@ -1,13 +1,18 @@
 ﻿@model IEnumerable<Product>
 
 
-   <h2> Liste</h2>
 
-@foreach (var item in Model)
-{
-    <h4>@item.Name</h4>
-    <h4>@item.Desc</h4>
-    <h4>@item.Price</h4>
-    <h4>@item.Category</h4>
-
-}
+<table class="table">
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td><b>@item.Name</b></td>
+        <td>@item.Desc</td>
+        <td><b>@item.Price</b></td>
+        <td>@item.Category</td>
+        <td><a asp-action="Details" class="btn btn-success" asp-controller="Product" asp-route-id="@item.ProductId">Güncelle</a></td>
+        <td><a asp-action="Delete" class="btn btn-danger" asp-controller="Product" asp-route-id="@item.ProductId">Sil</a></td>
+    </tr>       
+        
+    }
+</table>

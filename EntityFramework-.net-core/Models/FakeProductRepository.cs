@@ -17,5 +17,30 @@ namespace EntityFramework_.net_core.Models
                 new Product(){ProductId=6,Name="Phone 6",Price=7000,Category="Phone"}
 
         }.AsQueryable();
+
+        public void CreateProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product GetById(int productid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
