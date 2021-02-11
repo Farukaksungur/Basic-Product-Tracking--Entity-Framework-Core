@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Product>
+
+
+   <h2> Liste</h2>
+
+@foreach (var item in Model)
+{
+    <h4>@item.Name</h4>
+    <h4>@item.Desc</h4>
+    <h4>@item.Price</h4>
+    <h4>@item.Category</h4>
+
+}

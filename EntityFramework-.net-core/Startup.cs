@@ -1,3 +1,4 @@
+using EntityFramework_.net_core.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace EntityFramework_.net_core
 {
@@ -23,7 +25,9 @@ namespace EntityFramework_.net_core
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("vt")));
             services.AddControllersWithViews();
+            services.AddTransient<IProductRepository, EfProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +47,9 @@ namespace EntityFramework_.net_core
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+           
+
 
             app.UseAuthorization();
 
@@ -50,8 +57,10 @@ namespace EntityFramework_.net_core
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Product}/{action=List}/{id?}");
             });
+
+            SeedData.Seed(app);
         }
     }
 }
